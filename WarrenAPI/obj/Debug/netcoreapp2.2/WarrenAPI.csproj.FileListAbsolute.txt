@@ -1,0 +1,16 @@
+H:\Projects\Warren\WarrenAPI\bin\Debug\netcoreapp2.2\appsettings.Development.json
+H:\Projects\Warren\WarrenAPI\bin\Debug\netcoreapp2.2\appsettings.json
+H:\Projects\Warren\WarrenAPI\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+H:\Projects\Warren\WarrenAPI\bin\Debug\netcoreapp2.2\WarrenAPI.deps.json
+H:\Projects\Warren\WarrenAPI\bin\Debug\netcoreapp2.2\WarrenAPI.runtimeconfig.json
+H:\Projects\Warren\WarrenAPI\bin\Debug\netcoreapp2.2\WarrenAPI.runtimeconfig.dev.json
+H:\Projects\Warren\WarrenAPI\bin\Debug\netcoreapp2.2\WarrenAPI.dll
+H:\Projects\Warren\WarrenAPI\bin\Debug\netcoreapp2.2\WarrenAPI.pdb
+H:\Projects\Warren\WarrenAPI\obj\Debug\netcoreapp2.2\WarrenAPI.csprojAssemblyReference.cache
+H:\Projects\Warren\WarrenAPI\obj\Debug\netcoreapp2.2\WarrenAPI.RazorAssemblyInfo.cache
+H:\Projects\Warren\WarrenAPI\obj\Debug\netcoreapp2.2\WarrenAPI.RazorAssemblyInfo.cs
+H:\Projects\Warren\WarrenAPI\obj\Debug\netcoreapp2.2\WarrenAPI.AssemblyInfoInputs.cache
+H:\Projects\Warren\WarrenAPI\obj\Debug\netcoreapp2.2\WarrenAPI.AssemblyInfo.cs
+H:\Projects\Warren\WarrenAPI\obj\Debug\netcoreapp2.2\WarrenAPI.RazorTargetAssemblyInfo.cache
+H:\Projects\Warren\WarrenAPI\obj\Debug\netcoreapp2.2\WarrenAPI.dll
+H:\Projects\Warren\WarrenAPI\obj\Debug\netcoreapp2.2\WarrenAPI.pdb
