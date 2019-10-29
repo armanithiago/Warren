@@ -1,0 +1,22 @@
+<h1>Lista de contas</h1>
+
+<p>Lista de todas as contas cadastradas.</p>
+
+<p *ngIf="!accounts"><em>Carregando dados...</em></p>
+
+<table class='table table-striped' *ngIf="accounts">
+  <thead>
+    <tr>
+      <th>Número da Conta</th>
+      <th>Valor em Conta</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let account of accounts">
+      <td>{{ account.number }}</td>
+      <td>R$ {{ account.value |  number:'1.2-2'}}</td>
+      <td><a class="btn btn-primary" role="button" routerLink="account/{{account.number}}">Usar conta</a></td>
+    </tr>
+  </tbody>
+</table>

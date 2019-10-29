@@ -6,10 +6,32 @@
 
 <div *ngIf="account">
   <p>Número da conta: <strong>{{account.number}}</strong></p>
-  <p>Valor em conta: <strong>R$ {{account.value}}</strong></p>
+  <p>Valor em conta: <strong>R$ {{account.value | number:'1.2-2'}}</strong></p>
 
-  <input #transactionValue type="number" >
-  <button class="btn btn-primary" (click)="deposit(transactionValue.value)">Depositar</button>
-  <button class="btn btn-primary" (click)="withdraw(transactionValue.value)">Retirar</button>
-  <button class="btn btn-primary" (click)="payment(transactionValue.value)">Pagar</button>
+  <p><input #transactionValue step='0.01' type="number" placeholder="0,00"></p>
+  <button class="btn btn-success" style="margin-right:10px" (click)="deposit(transactionValue.value)">Depositar</button>
+  <button class="btn btn-warning" style="margin-right:10px" (click)="withdraw(transactionValue.value)">Retirar</button>
+  <button class="btn btn-danger" style="margin-right:10px" (click)="payment(transactionValue.value)">Pagar</button>
+  <br />
+  <br />
+  <p>Histórico da conta:</p>
+  <table class='table table-striped' *ngIf="transactions">
+    <thead>
+      <tr>
+        <th>Tipo da transação</th>
+        <th>Valor</th>
+        <th>Data e Hora</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of transactions">
+        <td>{{ getTransactionType(transaction.transactionType) }}</td>
+        <td>R$ {{ transaction.transactionValue | number:'1.2-2'}}</td>
+        <td>{{ transaction.transactionTime | date: 'dd/MM/yyyy hh:mm'}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <a class="btn btn-primary" role="button" [routerLink]='[""]'>Retornar</a>
 </div>

@@ -27,9 +27,10 @@ namespace WarrenAPI.Services
         }
         public Account Deposit(Transaction transaction)
         {
+            TransactionValidated(transaction);
             var account = _context.Accounts.Where(x => x.Number == transaction.AccountNumber).FirstOrDefault();
             account.Value += transaction.Value;
-            var transactionHistory = new TransactionHistory { AccountNumber = account.Number, TransactionType = TransactionType.Deposit, TransactionTime = DateTime.Now };
+            var transactionHistory = new TransactionHistory { AccountNumber = account.Number, TransactionType = TransactionType.Deposit, TransactionTime = DateTime.Now, TransactionValue = transaction.Value };
             _context.Add(transactionHistory);
             _context.SaveChanges();
             return account;
@@ -37,11 +38,12 @@ namespace WarrenAPI.Services
 
         public Account Payment(Transaction transaction)
         {
+            TransactionValidated(transaction);
             var account = _context.Accounts.Where(x => x.Number == transaction.AccountNumber).FirstOrDefault();
             if(account.Value >= transaction.Value)
             {
                 account.Value -= transaction.Value;
-                var transactionHistory = new TransactionHistory { AccountNumber = account.Number, TransactionType = TransactionType.Payment, TransactionTime = DateTime.Now };
+                var transactionHistory = new TransactionHistory { AccountNumber = account.Number, TransactionType = TransactionType.Payment, TransactionTime = DateTime.Now, TransactionValue = transaction.Value };
                 _context.Add(transactionHistory);
                 _context.SaveChanges();
             }
@@ -54,11 +56,12 @@ namespace WarrenAPI.Services
 
         public Account Withdraw(Transaction transaction)
         {
+            TransactionValidated(transaction);
             var account = _context.Accounts.Where(x => x.Number == transaction.AccountNumber).FirstOrDefault();
             if (account.Value >= transaction.Value)
             {
                 account.Value -= transaction.Value;
-                var transactionHistory = new TransactionHistory { AccountNumber = account.Number, TransactionType = TransactionType.Withdraw, TransactionTime = DateTime.Now };
+                var transactionHistory = new TransactionHistory { AccountNumber = account.Number, TransactionType = TransactionType.Withdraw, TransactionTime = DateTime.Now, TransactionValue = transaction.Value };
                 _context.Add(transactionHistory);
                 _context.SaveChanges();
             }
@@ -73,5 +76,18 @@ namespace WarrenAPI.Services
         {
             return _context.Transactions.Where(x => x.AccountNumber == number).ToList();
         }
+
+        private void TransactionValidated(Transaction transaction)
+        {
+            if (transaction.AccountNumber <= 0)
+            {
+                throw new Exception("Número da conta deve ser informado.");
+            }
+            if (transaction.Value <= 0)
+            {
+                throw new Exception("A transação deve possuir um valor numérico e positivo.");
+            }
+        }
+       
     }
 }

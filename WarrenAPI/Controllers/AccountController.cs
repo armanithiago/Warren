@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.Http; 
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WarrenAPI.Models;
 using WarrenAPI.Services;
+using System.Net.Http;
+using System.Net;
 
 namespace WarrenAPI.Controllers
 {
@@ -22,43 +26,94 @@ namespace WarrenAPI.Controllers
 
         [Route("Accounts")]
         [HttpGet]
-        public IEnumerable<Account> Get()
+        public IActionResult Get()
         {
-            return _accountService.GetAccounts();
+            try
+            {
+                var response = _accountService.GetAccounts();
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("{number}")]
-        public Account GetAccount(int number)
+        public IActionResult GetAccount(int number)
         {
-            return _accountService.GetAccount(number);
+            try
+            {
+                var response = _accountService.GetAccount(number);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [Route("Deposit")]
         [HttpPost]
-        public Account Deposit([FromBody]Transaction transaction)
+        public IActionResult Deposit([FromBody]Transaction transaction)
         {
-            return _accountService.Deposit(transaction);
+            try
+            {
+                
+                var response = _accountService.Deposit(transaction);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [Route("Withdraw")]
         [HttpPost]
-        public Account Withdraw([FromBody]Transaction transaction)
+        public IActionResult Withdraw([FromBody]Transaction transaction)
         {
-            return _accountService.Withdraw(transaction);
+            try
+            {
+                var response = _accountService.Withdraw(transaction);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+
         }
 
         [Route("Payment")]
         [HttpPost]
-        public Account Payment([FromBody]Transaction transaction)
+        public IActionResult Payment([FromBody]Transaction transaction)
         {
-            return _accountService.Payment(transaction);
+            try
+            {
+                var response = _accountService.Payment(transaction);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [Route("Trasaction/{number}")]
         [HttpGet]
-        public IEnumerable<TransactionHistory> Transactions(int number)
+        public IActionResult Transactions(int number)
         {
-            return _accountService.GetTransactions(number);
+            try
+            {
+                var response = _accountService.GetTransactions(number);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
